@@ -4,6 +4,16 @@ module Jekyll
     def textilize(input)
       RedCloth.new(input).to_html
     end
+    
+    def markdown(input)
+        if defined? RDiscount
+          RDiscount.new(input || '').to_html 
+        else
+          #techniclally, during testing this ignores the configuration settings
+          #in site.rb, but at runtime it shouldn't be an issue
+          Maruku.new(input).to_html
+        end
+    end    
 
     def date_to_string(date)
       date.strftime("%d %b %Y")

@@ -58,3 +58,13 @@ Feature: Embed filters
     Then the _site directory should exist
     And I should see "By <p><em>Obi-wan</em></p>" in "_site/2009/03/27/star-wars.html"
 
+    Scenario: Markdown a given string
+      Given I have a _posts directory
+      And I have a _layouts directory
+      And I have the following post:
+        | title     | date      | layout  | content                                      |
+        | Star Wars | 3/27/2009 | default | These aren't the droids you're looking for. |
+      And I have a default layout that contains "By {{ '_Obi-wan_' | markdown }}"
+      When I run jekyll
+      Then the _site directory should exist
+      And I should see "By <p><em>Obi-wan</em></p>" in "_site/2009/03/27/star-wars.html"

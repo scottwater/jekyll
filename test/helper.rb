@@ -1,5 +1,6 @@
 require 'rubygems'
 gem 'RedCloth', '>= 4.2.1'
+require 'maruku'
 
 require File.join(File.dirname(__FILE__), *%w[.. lib jekyll])
 
